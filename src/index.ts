@@ -63,9 +63,11 @@ app.post('/control', async (_req, res) => {
     const email = process.env.EMAIL;
     const password = process.env.PASSWORD;
     const server = process.env.SERVER;
+    const web_ui = process.env.HOST;
+    const web_ui_port = process.env.PORT || 80;
 
     // Authenticate and retrieve session token
-    const loginResponse = await axios.post('http://192.168.18.150:8080/auth/login', {
+    const loginResponse = await axios.post(`http://${web_ui}:${web_ui_port}/auth/login`, {
       email: email,
       password: password,
     });
@@ -77,14 +79,14 @@ app.post('/control', async (_req, res) => {
 
     // Stop the server
     await axios.post(
-      `http://192.168.18.150:8080/proxy/daemon/server/${server}/stop?wait=true`,
+      `http://${web_ui}:${web_ui_port}/proxy/daemon/server/${server}/stop?wait=true`,
       {},
       { headers: { Authorization: `Bearer ${session}` } }
     );
 
     // Start the server
     await axios.post(
-      `http://192.168.18.150:8080/proxy/daemon/server/${server}/start?wait=true`,
+      `http://${web_ui}:${web_ui_port}/proxy/daemon/server/${server}/start?wait=true`,
       {},
       { headers: { Authorization: `Bearer ${session}` } }
     );
