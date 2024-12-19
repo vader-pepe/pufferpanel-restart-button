@@ -22,6 +22,8 @@ This project is a simple TypeScript-based web server that provides a simple butt
 USERNAME=your_email@example.com
 PASSWORD=your_password
 SERVER=your_server_id
+HOST=your_pufferpanel_webui
+PORT=your_pufferpanel_webui_port
 ```
 your server id can be obtained in your pufferpanel web UI
 ![image](https://github.com/user-attachments/assets/23a54055-c87d-4da7-95e8-c5cc048fc3cc)
@@ -44,9 +46,11 @@ your server id can be obtained in your pufferpanel web UI
 3. **Set Up Environment Variables**:
    - Create a `.env` file in the root directory:
      ```bash
-     echo "USERNAME=your_email@example.com" > .env
+     echo "USERNAME=your_email@example.com" >> .env
      echo "PASSWORD=your_password" >> .env
-     echo "PASSWORD=your_server_id" >> .env
+     echo "SERVER=your_server_id" >> .env
+     echo "HOST=your_pufferpanel_webui" >> .env
+     echo "PORT=your_pufferpanel_webui_port" >> .env
      ```
 
 4. **Run Locally**:
@@ -96,7 +100,6 @@ docker build -t my-image .
 ├── tsconfig.json     # TypeScript configuration
 └── .env              # Environment variables (not included in version control)
 ```
-
 ---
 
 ## License
